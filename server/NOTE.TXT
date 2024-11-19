@@ -1,0 +1,17 @@
+1. AUTH  
+    A. SIGNUP
+
+        POST http://localhost:3000/api/auth/signup
+        {
+        "name":"vibhu",
+        "email":"abc@gmail.com",
+        "password":"wefewr"
+        }
+    B. LOGIN
+        POST http://localhost:3000/api/auth/login
+        {
+            "email":"abc@gmail.com",
+            "password":"wefewr"
+        }
+    C. SIGNOUT
+        GET http://localhost:3000/api/auth/signout

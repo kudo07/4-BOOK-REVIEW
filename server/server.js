@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
+import { prisma } from './config/connection.js';
 
 dotenv.config();
 // connection string
@@ -22,12 +23,13 @@ app.get('/', async (req, res) => {
     await prisma.$connect();
     res.send('server and databse are runing!');
   } catch (error) {
-    res.status(500).send('failed to connect to the database');
+    res.send('failed to connect to the database');
+    console.log(error);
   }
 });
 
 // ROUTES
-app.use('/app/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 // example
 
