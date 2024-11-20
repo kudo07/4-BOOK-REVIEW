@@ -15,3 +15,34 @@
         }
     C. SIGNOUT
         GET http://localhost:3000/api/auth/signout
+
+2. BOOKS 
+    1. CREATE ADD BOOKS 
+        POST http://localhost:3000/api/books
+        {
+          "title": "The Great Gatsby",
+          "author": "F. Scott Fitzgerald",
+          "isbn": "9780743273565",
+          "genre": "Classic",
+          "coverUrl": "https://neon.tech/images/social-previews/pricing.jpg"
+        }
+    2. UPDATED THE BOOKS 
+        PUT http://localhost:3000/api/books/1
+        {
+          "title": "The Great Gatsby updated",
+          "author": "F. Scott Fitzgerald",
+          "isbn": "9780743273565",
+          "genre": "Classic",
+          "coverUrl": "https://neon.tech/images/social-previews/pricing.jpg"
+        }
+    3. DELETE THE BOOKS
+        DELETE  http://localhost:3000/api/books/1
+    4.  GET THE BOOKS 
+        GET http://localhost:3000/api/books
+    5. GET BOOK BY ID
+        GET http://localhost:3000/api/books/getbook/2
+    
+    6. SEARCH THE BOOKS 
+        http://localhost:3000/api/books/search?query=Gatsby
+    7. RECOMMEND THE BOOKS
+        http://localhost:3000/api/books/recommend/2
