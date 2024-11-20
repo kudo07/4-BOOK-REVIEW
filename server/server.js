@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
 import { prisma } from './config/connection.js';
 import { v2 as cloudinary } from 'cloudinary';
 
@@ -35,6 +36,7 @@ app.get('/', async (req, res) => {
 // ROUTES
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // error handler
 

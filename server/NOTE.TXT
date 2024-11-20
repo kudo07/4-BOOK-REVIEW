@@ -15,8 +15,11 @@
         }
     C. SIGNOUT
         GET http://localhost:3000/api/auth/signout
+    d. GET THE USER AND ITS ALL THE BOOKS BOOKS 
+        GET
 
 2. BOOKS 
+id refer here for the bookId and for all the books one
     1. CREATE ADD BOOKS 
         POST http://localhost:3000/api/books
         {
@@ -46,3 +49,25 @@
         http://localhost:3000/api/books/search?query=Gatsby
     7. RECOMMEND THE BOOKS
         http://localhost:3000/api/books/recommend/2
+
+3. REVIEWS 
+here i explain which id
+    1. create te reviews for the particular book with the given
+        POST http://localhost:3000/api/reviews/books/2/reviews
+            {
+              "rating": 5,
+              "text": "An amazing book!"
+            }
+    
+    2. EDIT OR UPDATE THE EXISTED REVIEW 
+        PUT http://localhost:3000/api/reviews/reviews/1
+        {
+            "rating": 4,
+            "text": "Updated review: The pacing could have been better."
+        }
+        
+    3. DELETE THE REVIEW BY PASSING THE REVIEW ID 
+     DELETE http://localhost:3000/api/reviews/reviews/1
+
+    4.GET A BOOK AND THEIR ALL THE REVIEWS AND AVERAGE RATING 
+        GET http://localhost:3000/api/reviews/books/2/reviews

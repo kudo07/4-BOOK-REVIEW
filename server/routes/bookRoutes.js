@@ -14,6 +14,7 @@ import { verifyToken } from '../utils/authMiddleware.js';
 const router = Router();
 
 // POST route for adding a book
+// all ids are reference here are for the books
 router.post('/', verifyToken, addBook);
 
 router.put('/:id', verifyToken, updateBook);
