@@ -7,7 +7,7 @@ import bookRoutes from './routes/bookRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import { prisma } from './config/connection.js';
 import { v2 as cloudinary } from 'cloudinary';
-
+import path from 'path';
 dotenv.config();
 const __dirname = path.resolve();
 // dynamic directory name
