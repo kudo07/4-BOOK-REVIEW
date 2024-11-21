@@ -15,9 +15,59 @@
         }
     C. SIGNOUT
         GET http://localhost:3000/api/auth/signout
-    d. GET THE USER AND ITS ALL THE BOOKS BOOKS 
-        GET
-
+    d. GET THE USER AND ITS ALL THE BOOKS  BY PASING THE USERID
+        GET http://localhost:3000/api/auth/1/books
+            RESPONSE RESULT  ==>  
+                                    
+                        {
+                            "success": true,
+                            "books": [
+                                {
+                                    "id": 2,
+                                    "title": "The Great Gatsby",
+                                    "author": "F. Scott Fitzgerald",
+                                    "isbn": "9780743273565",
+                                    "genre": "Classic",
+                                    "coverUrl": "https://res.cloudinary.com/dp4flnvvw/image/upload/v1732106516/fmxdrbrp9bfgzajaonwa.jpg",
+                                    "ownerId": 1,
+                                    "createdAt": "2024-11-20T12:41:57.791Z",
+                                    "updatedAt": "2024-11-20T12:41:57.791Z",
+                                    "reviews": [
+                                        {
+                                            "id": 2,
+                                            "rating": 5,
+                                            "text": "An amazing book!",
+                                            "userId": 1,
+                                            "bookId": 2
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": 3,
+                                    "title": "To Kill a Mockingbird",
+                                    "author": "Harper Lee",
+                                    "isbn": "9780061120084",
+                                    "genre": "Classic",
+                                    "coverUrl": "https://res.cloudinary.com/dp4flnvvw/image/upload/v1732106607/el2rmakane3csvt6qrs7.jpg",
+                                    "ownerId": 1,
+                                    "createdAt": "2024-11-20T12:43:28.222Z",
+                                    "updatedAt": "2024-11-20T12:43:28.222Z",
+                                    "reviews": []
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "1984",
+                                    "author": "George Orwell",
+                                    "isbn": "9780451524935",
+                                    "genre": "Dystopian",
+                                    "coverUrl": "https://res.cloudinary.com/dp4flnvvw/image/upload/v1732113678/oo1yxskzel8wa96hiqja.jpg",
+                                    "ownerId": 1,
+                                    "createdAt": "2024-11-20T14:41:18.921Z",
+                                    "updatedAt": "2024-11-20T14:41:18.921Z",
+                                    "reviews": []
+                                }
+                            ]
+                        }
 2. BOOKS 
 id refer here for the bookId and for all the books one
     1. CREATE ADD BOOKS 

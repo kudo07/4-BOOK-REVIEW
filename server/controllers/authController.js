@@ -46,3 +46,27 @@ export const login = async (req, res, next) => {
 export const signout = (req, res) => {
   res.clearCookie('access_token').status(200).json('Signout success');
 };
+
+// get all the user created books
+export const getUserBooks = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    // Fetch books by userId
+    const userBooks = await prisma.book.findMany({
+      where: { ownerId: parseInt(userId, 10) },
+      include: {
+        reviews: true, // Include reviews if needed
+      },
+    });
+
+    if (!userBooks.length) {
+      next(errorHandler(404, 'No books found for this user.'));
+    }
+
+    res.status(200).json({ success: true, books: userBooks });
+  } catch (error) {
+    console.error('Error fetching user books:', error);
+    next(errorHandler(500, 'Failed to fetch the books'));
+  }
+};
