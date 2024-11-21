@@ -17,4 +17,10 @@ ROUTES
 
     3. SIGNUP 
         route==> http://localhost:5173/signup
-        backend api==> http://localhost:3000/api/auth/signup 
+        backend api==> http://localhost:3000/api/auth/signup
+
+    4. search
+        /search 
+    5. pROFILE 
+        /PROFILE 
+    6. /BOOK/:ID
