@@ -13,6 +13,7 @@ const __dirname = path.resolve();
 // dynamic directory name
 // define the static folder for the build in production
 // create our static path
+const app = express();
 app.use(express.static(path.join(__dirname, '/client/dist')));
 // find this directory and send it to this file
 // in vite dist
@@ -21,7 +22,6 @@ app.get('*', (req, res) => {
 });
 // any place or any thing inside the client side
 // connection string
-const app = express();
 const PORT = process.env.PORT || 3000;
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
