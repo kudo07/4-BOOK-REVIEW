@@ -9,6 +9,17 @@ import { prisma } from './config/connection.js';
 import { v2 as cloudinary } from 'cloudinary';
 
 dotenv.config();
+const __dirname = path.resolve();
+// dynamic directory name
+// define the static folder for the build in production
+// create our static path
+app.use(express.static(path.join(__dirname, '/client/dist')));
+// find this directory and send it to this file
+// in vite dist
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
+// any place or any thing inside the client side
 // connection string
 const app = express();
 const PORT = process.env.PORT || 3000;

@@ -9,14 +9,18 @@
   color: aliceblue;
 }
 body {
+  @apply bg-black  min-h-screen;
   background: linear-gradient(
       to bottom right,
-      rgba(0, 0, 0, 0.8),
-      rgba(19, 18, 18, 0.8)
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.5)
     ),
-    url('/bg.jpg');
+    url('/spaceTwoOne.jpg');
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  color: white;
+  font-weight: bolder;
 }
