@@ -51,7 +51,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 // Test route to check Prisma connection
-app.get('/', async (req, res) => {
+app.get('/prisma', async (req, res) => {
   try {
     await prisma.$connect();
     res.send('Server and database are running!');
