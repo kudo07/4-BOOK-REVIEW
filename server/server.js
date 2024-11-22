@@ -5,42 +5,61 @@ import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
-import { prisma } from './config/connection.js';
+import { PrismaClient } from '@prisma/client';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import { PrismaNeon } from '@prisma/adapter-neon';
 import { v2 as cloudinary } from 'cloudinary';
 import path from 'path';
+import ws from 'ws';
+
 dotenv.config();
-const __dirname = path.resolve();
-// dynamic directory name
-// define the static folder for the build in production
-// create our static path
+
+// Set up WebSocket constructor for Neon
+neonConfig.webSocketConstructor = ws;
+
+// Database connection string
+const connectionString = process.env.DATABASE_URL;
+
+// Set up the pool with Neon and PrismaNeon adapter
+const pool = new Pool({ connectionString });
+const adapter = new PrismaNeon(pool);
+
+// Initialize Prisma Client with the Neon adapter
+const prisma = new PrismaClient({ adapter });
+
+// Express app setup
 const app = express();
-app.use(express.static(path.join(__dirname, '/client/dist')));
-// find this directory and send it to this file
-// in vite dist
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
-// any place or any thing inside the client side
-// connection string
-const PORT = process.env.PORT || 3000;
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-// middlewares
+const __dirname = path.resolve();
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Static file configuration for client-side (Vite)
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+// Fallback route for Vite SPA
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
+
+// Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Test route to check Prisma connection
 app.get('/', async (req, res) => {
   try {
     await prisma.$connect();
-    res.send('server and databse are runing!');
+    res.send('Server and database are running!');
   } catch (error) {
-    res.send('failed to connect to the database');
-    console.log(error);
+    res.send('Failed to connect to the database');
+    console.error(error);
   }
 });
 
@@ -49,8 +68,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/reviews', reviewRoutes);
 
-// error handler
-
+// Global error handler
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal server error';
@@ -60,8 +78,9 @@ app.use((err, req, res, next) => {
     statusCode,
   });
 });
-// server
 
-app.listen(3000, () => {
-  console.log(`server is running in ${PORT}`);
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

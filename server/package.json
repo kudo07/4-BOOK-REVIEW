@@ -4,14 +4,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server/server.js",
-    "start": "node server/server.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client"
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client",
+    "generate": "prisma generate"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@neondatabase/serverless": "^0.10.3",
+    "@prisma/adapter-neon": "^5.22.0",
     "@prisma/client": "^5.22.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -23,6 +26,10 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.7",
-    "prisma": "^5.22.0"
+    "prisma": "^5.22.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.13"
   }
 }
