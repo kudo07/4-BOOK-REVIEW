@@ -54,7 +54,7 @@ cloudinary.config({
 await prisma.$connect();
 app.get('/', async (req, res) => {
   try {
-    res.send('Server and database are running!');
+    // res.send('Server and database are running!');
   } catch (error) {
     res.send('Failed to connect to the database');
     console.error(error);
