@@ -26,7 +26,7 @@ const adapter = new PrismaNeon(pool);
 
 // Initialize Prisma Client with the Neon adapter
 const prisma = new PrismaClient({ adapter });
-// await prisma.$connect();
+prisma.$connect();
 
 // Express app setup
 const app = express();
