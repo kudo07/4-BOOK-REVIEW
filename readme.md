@@ -15,6 +15,13 @@ Ensure you have the following installed before proceeding:
 
 ---
 
+## Image
+
+<p align="center">
+  <img src="client/public/image.png" alt="Redux Logo" width="50" />
+  
+</p>
+
 ## ⚙️ Environment Setup
 
 1. Create a `.env` file in the **root directory** and add the following variables:
