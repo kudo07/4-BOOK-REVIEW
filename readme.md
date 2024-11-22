@@ -18,7 +18,7 @@ Ensure you have the following installed before proceeding:
 ## Image
 
 <p align="center">
-  <img src="client/public/image.png" alt="Redux Logo" width="50" />
+  <img src="client/public/image.png" alt="Redux Logo"  />
   
 </p>
 
