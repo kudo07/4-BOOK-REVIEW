@@ -1,4 +1,4 @@
-# MyProjectName
+# book review project
 
 A modern full-stack application built with **React**, **Node.js**, **PostgreSQL**, and **Cloudinary**. This project includes a backend server, a frontend client, and utilizes Prisma for database management.
 
