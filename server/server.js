@@ -26,6 +26,7 @@ const adapter = new PrismaNeon(pool);
 
 // Initialize Prisma Client with the Neon adapter
 const prisma = new PrismaClient({ adapter });
+// await prisma.$connect();
 
 // Express app setup
 const app = express();
@@ -51,7 +52,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 // Test route to check Prisma connection
-await prisma.$connect();
 app.get('/p', async (req, res) => {
   try {
     // res.send('Server and database are running!');
