@@ -52,7 +52,7 @@ cloudinary.config({
 });
 // Test route to check Prisma connection
 await prisma.$connect();
-app.get('/', async (req, res) => {
+app.get('/p', async (req, res) => {
   try {
     // res.send('Server and database are running!');
   } catch (error) {
