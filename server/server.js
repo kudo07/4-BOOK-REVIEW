@@ -29,21 +29,20 @@ const prisma = new PrismaClient({ adapter });
 
 // Express app setup
 const app = express();
-const __dirname = path.resolve();
+const _dirname = path.resolve();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
+const corsOptions = {
+  origin: 'https://boorew.onrender.com/',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
-// Static file configuration for client-side (Vite)
-app.use(express.static(path.join(__dirname, '../client/dist')));
-
-// Fallback route for Vite SPA
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-});
+// app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Cloudinary configuration
 cloudinary.config({
@@ -51,7 +50,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
 // Test route to check Prisma connection
 app.get('/', async (req, res) => {
   try {
@@ -78,9 +76,12 @@ app.use((err, req, res, next) => {
     statusCode,
   });
 });
-
+app.use(express.static(path.join(_dirname, '/client/dist')));
+app.get('*', (_, res) => {
+  res.sendFile(path.resolve(_dirname, 'client', 'dist', 'index.html'));
+});
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Serverr is running on port ${PORT}`);
 });

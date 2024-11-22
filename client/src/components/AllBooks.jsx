@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import BookOne from './BookOne';
 
 const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
@@ -45,6 +44,7 @@ const AllBooks = () => {
           `/api/books?page=${currentPage}&limit=10&sortBy=title&sortOrder=asc`
         );
         const data = await res.json();
+        console.log(data);
 
         if (Array.isArray(data.books)) {
           setBooks(data.books);
